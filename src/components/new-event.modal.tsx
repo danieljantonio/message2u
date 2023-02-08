@@ -7,7 +7,6 @@ import { api } from "../utils/api";
 type Props = {
 	show: boolean;
 	setShow: (e: boolean) => void;
-	onSubmit: (values: FormValues) => void;
 };
 
 const NewEventModal: FC<Props> = ({ show, setShow }) => {
