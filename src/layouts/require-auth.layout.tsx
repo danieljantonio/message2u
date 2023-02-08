@@ -1,4 +1,6 @@
+import { router } from "@trpc/server";
 import { useSession } from "next-auth/react";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { FC, PropsWithChildren, useEffect } from "react";
 
@@ -17,11 +19,9 @@ const RequireAuthLayout: FC<PropsWithChildren<Props>> = ({
 
 	useEffect(() => {
 		if (requireAuth && !session) router.push("/");
-		// @ts-ignore
 	}, []);
 
 	if (session && redirectOnAuth) {
-		// @ts-ignore
 		router.push(redirectOnAuth);
 		return <div>Loading...</div>;
 	} else if (requireAuth) {
