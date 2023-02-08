@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
+import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 
 export const eventRouter = createTRPCRouter({
 	create: protectedProcedure
@@ -29,5 +29,11 @@ export const eventRouter = createTRPCRouter({
 			},
 		});
 		return events;
+	}),
+	get: publicProcedure.input(z.object({ id: z.string() })).query(async ({ ctx, input }) => {
+		const evnt = await ctx.prisma.event.findUniqueOrThrow({
+			where: { ...input },
+		});
+		return evnt;
 	}),
 });
