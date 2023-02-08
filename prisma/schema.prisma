@@ -69,6 +69,7 @@ model VerificationToken {
 model Event {
   id          String    @id @default(cuid())
   name        String
+  dedicatedTo String
   description String?
   link        String    @unique
   owner       User      @relation(fields: [ownerId], references: [id])

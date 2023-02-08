@@ -42,6 +42,21 @@ const NewEventModal: FC<Props> = ({ show, setShow }) => {
 						</div>
 						<div>
 							<div className="mb-2 mt-4 block">
+								<Label htmlFor="event-dedication" value="Dedicated To:" />
+							</div>
+							<TextInput
+								id="event-dedication"
+								type="text"
+								placeholder="Jane Foster"
+								required={true}
+								{...register("dedicatedTo", { required: true })}
+							/>
+							{errors.dedicatedTo && (
+								<span className="text-red-600 text-sm">This field is required</span>
+							)}
+						</div>
+						<div>
+							<div className="mb-2 mt-4 block">
 								<Label htmlFor="event-description" value="Description" />
 							</div>
 							<TextInput
@@ -58,7 +73,8 @@ const NewEventModal: FC<Props> = ({ show, setShow }) => {
 							<TextInput
 								id="event-description"
 								type="text"
-								placeholder="janesweet17"
+								placeholder="janefoster2023"
+								addon="message2u.com/"
 								{...register("link", { required: true })}
 							/>
 							{errors.link && (
