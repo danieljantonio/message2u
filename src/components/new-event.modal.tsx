@@ -31,6 +31,7 @@ const NewEventModal: FC<Props> = ({ show, setShow }) => {
 			<Modal.Header>Create New Event</Modal.Header>
 			<Modal.Body>
 				<div className="space-y-6">
+					{/* @ts-ignore */}
 					<form id="create-event-form" onSubmit={handleSubmit(onSubmit)}>
 						<div>
 							<div className="mb-2 block">
