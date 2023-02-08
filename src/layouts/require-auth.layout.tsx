@@ -25,10 +25,10 @@ const RequireAuthLayout: FC<PropsWithChildren<Props>> = ({
 		router.push(redirectOnAuth);
 		return <div>Loading...</div>;
 	} else if (requireAuth) {
-		if (session) return <main>{children}</main>;
-		return <main>Forbidden: Auth Required</main>;
+		if (session) return <main className="h-screen w-screen">{children}</main>;
+		return <main className="h-screen w-screen">Forbidden: Auth Required</main>;
 	}
-	return <main>{children}</main>;
+	return <main className="h-screen w-screen">{children}</main>;
 };
 
 export default RequireAuthLayout;
