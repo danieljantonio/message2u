@@ -67,13 +67,14 @@ model VerificationToken {
 }
 
 model Event {
-  id        String    @id @default(cuid())
-  name      String
+  id          String    @id @default(cuid())
+  name        String
   description String?
-  owner     User      @relation(fields: [ownerId], references: [id])
-  ownerId    String
-  messages  Message[]
-  createdAt DateTime  @default(now())
+  link        String    @unique
+  owner       User      @relation(fields: [ownerId], references: [id])
+  ownerId     String
+  messages    Message[]
+  createdAt   DateTime  @default(now())
 }
 
 model Message {
