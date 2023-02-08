@@ -20,7 +20,7 @@ const NewEventModal: FC<Props> = ({ show, setShow }) => {
 	};
 
 	return (
-		<Modal dismissible={true} show={show}>
+		<Modal dismissible={true} show={show} onClose={() => setShow(false)}>
 			<Modal.Header>Create New Event</Modal.Header>
 			<Modal.Body>
 				<div className="space-y-6">
