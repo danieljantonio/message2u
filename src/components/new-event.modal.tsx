@@ -2,6 +2,7 @@ import { Button, Label, Modal, TextInput } from "flowbite-react";
 import { FC } from "react";
 import { useForm } from "react-hook-form";
 import { FormValues } from "../types/common";
+import { api } from "../utils/api";
 
 type Props = {
 	show: boolean;
@@ -15,8 +16,15 @@ const NewEventModal: FC<Props> = ({ show, setShow }) => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm<FormValues>();
+
+	const createEvent = api.events.create.useMutation({
+		onSuccess: (data) => {
+			console.log(data);
+		},
+	});
+
 	const onSubmit = (values: FormValues) => {
-		console.log(values);
+		createEvent.mutate(values);
 	};
 
 	return (
