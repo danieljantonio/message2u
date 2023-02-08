@@ -1,4 +1,4 @@
-import { Button, Card, TextInput } from "flowbite-react";
+import { Button, Card } from "flowbite-react";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import RequireAuthLayout from "../../layouts/require-auth.layout";
@@ -30,7 +30,7 @@ const DedicatePage = () => {
 			<div className="font-mono px-5 gap-4 flex flex-col h-full tracking-tight max-w-5xl mx-auto">
 				<p className="text-5xl text-center mb-10 mt-20">{data.name}</p>
 				<Card className="overflow-visible">
-					<form id="dedicate-message" onSubmit={handleSubmit(onSubmit)}></form>
+					<form id="dedicate-message" onSubmit={void handleSubmit(onSubmit)}></form>
 					<label
 						htmlFor="message"
 						className="block text-md font-medium text-gray-900 dark:text-white">

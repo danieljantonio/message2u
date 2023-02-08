@@ -1,8 +1,6 @@
-import { router } from "@trpc/server";
 import { useSession } from "next-auth/react";
-import Head from "next/head";
 import { useRouter } from "next/router";
-import { FC, PropsWithChildren, useEffect } from "react";
+import { type FC, type PropsWithChildren, useEffect } from "react";
 
 type Props = {
 	requireAuth?: boolean;
@@ -18,11 +16,12 @@ const RequireAuthLayout: FC<PropsWithChildren<Props>> = ({
 	const router = useRouter();
 
 	useEffect(() => {
-		if (requireAuth && !session) router.push("/");
+		if (requireAuth && !session) void router.push("/");
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	if (session && redirectOnAuth) {
-		router.push(redirectOnAuth);
+		void router.push(redirectOnAuth);
 		return <div>Loading...</div>;
 	} else if (requireAuth) {
 		if (session) return <main className="h-screen w-screen">{children}</main>;

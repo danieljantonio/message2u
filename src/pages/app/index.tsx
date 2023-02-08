@@ -1,9 +1,8 @@
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import RequireAuthLayout from "../../layouts/require-auth.layout";
 import { Button, Spinner, Table } from "flowbite-react";
 import { useState } from "react";
 import NewEventModal from "../../components/new-event.modal";
-import { FormValues } from "../../types/common";
 import { api } from "../../utils/api";
 
 const App = () => {

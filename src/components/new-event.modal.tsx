@@ -1,7 +1,7 @@
 import { Button, Label, Modal, TextInput } from "flowbite-react";
-import { FC } from "react";
+import { type FC } from "react";
 import { useForm } from "react-hook-form";
-import { FormValues } from "../types/common";
+import { type FormValues } from "../types/common";
 import { api } from "../utils/api";
 
 type Props = {
@@ -31,7 +31,7 @@ const NewEventModal: FC<Props> = ({ show, setShow }) => {
 			<Modal.Header>Create New Event</Modal.Header>
 			<Modal.Body>
 				<div className="space-y-6">
-					<form id="create-event-form" onSubmit={handleSubmit(onSubmit)}>
+					<form id="create-event-form" onSubmit={void handleSubmit(onSubmit)}>
 						<div>
 							<div className="mb-2 block">
 								<Label htmlFor="event-name" value="Event Name" />
