@@ -22,4 +22,12 @@ export const eventRouter = createTRPCRouter({
 			});
 			return newEvent;
 		}),
+	getAll: protectedProcedure.query(async ({ ctx }) => {
+		const events = await ctx.prisma.event.findMany({
+			include: {
+				messages: true,
+			},
+		});
+		return events;
+	}),
 });
