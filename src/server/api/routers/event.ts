@@ -36,6 +36,14 @@ export const eventRouter = createTRPCRouter({
 		});
 		return evnt;
 	}),
+	getByLink: publicProcedure
+		.input(z.object({ link: z.string() }))
+		.query(async ({ ctx, input }) => {
+			const evnt = await ctx.prisma.event.findFirstOrThrow({
+				where: { ...input },
+			});
+			return evnt;
+		}),
 	dedicate: publicProcedure
 		.input(
 			z.object({
