@@ -61,4 +61,15 @@ export const eventRouter = createTRPCRouter({
 			});
 			return message;
 		}),
+	getWithMessage: publicProcedure
+		.input(z.object({ id: z.string() }))
+		.query(async ({ ctx, input }) => {
+			const evnt = await ctx.prisma.event.findUniqueOrThrow({
+				where: { ...input },
+				include: {
+					messages: true,
+				},
+			});
+			return evnt;
+		}),
 });
