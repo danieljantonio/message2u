@@ -36,4 +36,21 @@ export const eventRouter = createTRPCRouter({
 		});
 		return evnt;
 	}),
+	dedicate: publicProcedure
+		.input(
+			z.object({
+				message: z.string(),
+				eventId: z.string(),
+			}),
+		)
+		.mutation(async ({ ctx, input }) => {
+			console.log(input);
+
+			const message = await ctx.prisma.message.create({
+				data: {
+					...input,
+				},
+			});
+			return message;
+		}),
 });
