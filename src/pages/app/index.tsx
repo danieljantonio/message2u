@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import NewEventModal from "../../components/new-event.modal";
 import { api } from "../../utils/api";
 import { motion, useAnimationControls } from "framer-motion";
+import Link from "next/link";
 
 const App = () => {
 	const { data: session } = useSession();
@@ -15,15 +16,25 @@ const App = () => {
 
 	useEffect(() => {
 		if (show) {
-			controls.start({ opacity: 1, y: 50 });
-			setTimeout(() => {
-				controls.set({ opacity: 0, y: -50, transition: { duration: 2 } });
-				setShow(false);
-			}, 2500);
+			try {
+				void controls.start({ opacity: 1, y: 50 });
+				setTimeout(() => {
+					controls.set({ opacity: 0, y: -50, transition: { duration: 2 } });
+					setShow(false);
+				}, 2500);
+			} catch (error) {}
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [show]);
 
 	const { data, isLoading } = api.events.getAll.useQuery();
+
+	const copyToClipboard = async (link: string) => {
+		try {
+			await navigator.clipboard.writeText(`${window.location.host}/${link}`);
+		} catch (error) {}
+		setShow(true);
+	};
 
 	return (
 		<RequireAuthLayout requireAuth>
@@ -76,23 +87,18 @@ const App = () => {
 												<Table.Cell>{evnt.messages.length}</Table.Cell>
 												<Table.Cell className="flex gap-1">
 													<p
-														onClick={() => {
-															navigator.clipboard.writeText(
-																`${window.location.host}/${evnt.link}`,
-															);
-
-															setShow(true);
-															console.log(show);
-														}}
+														onClick={() =>
+															void copyToClipboard(evnt.link)
+														}
 														className="font-medium hover:cursor-pointer text-blue-600 hover:underline dark:text-blue-500">
 														Share
 													</p>
 													|
-													<a
-														href="#"
-														className="font-medium text-blue-600 hover:underline dark:text-blue-500">
+													<Link
+														className="font-medium text-blue-600 hover:underline dark:text-blue-500"
+														href={`/display/${evnt.id}`}>
 														Display
-													</a>
+													</Link>
 												</Table.Cell>
 											</Table.Row>
 										))
