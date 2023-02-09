@@ -104,7 +104,7 @@ const App = () => {
 				</div>
 				<motion.div
 					animate={controls}
-					initial={{ opacity: 1 }}
+					initial={{ opacity: 0 }}
 					className="absolute top-0 right-1/2">
 					<Alert color="info" className="mb-5 translate-x-1/2 ">
 						<span>Link has been copied to clipboard.</span>
