@@ -16,7 +16,7 @@ const DedicatePage = () => {
 	const { data, isLoading } = api.events.get.useQuery({ id });
 
 	const dedicateMessage = api.events.dedicate.useMutation({
-		onSuccess: (data) => router.push(`/thank-you?url=${router.asPath}`),
+		onSuccess: () => router.push(`/thank-you?url=${router.asPath}`),
 	});
 
 	if (isLoading)
