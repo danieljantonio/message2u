@@ -1,13 +1,8 @@
 import { Button, Card, Label, Spinner, Textarea } from "flowbite-react";
 import { useRouter } from "next/router";
-import { useForm } from "react-hook-form";
 import RequireAuthLayout from "../../layouts/require-auth.layout";
 import { api } from "../../utils/api";
 import { useState } from "react";
-
-type MessageForm = {
-	message: string;
-};
 
 type RouterQuery = {
 	id: string;
@@ -21,9 +16,7 @@ const DedicatePage = () => {
 	const { data, isLoading } = api.events.get.useQuery({ id });
 
 	const dedicateMessage = api.events.dedicate.useMutation({
-		onSuccess: (data) => {
-			console.log(data);
-		},
+		onSuccess: (data) => router.push(`/thank-you?url=${router.asPath}`),
 	});
 
 	if (isLoading)
