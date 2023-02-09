@@ -107,15 +107,10 @@ const App = () => {
 					initial={{ opacity: 1 }}
 					className="absolute top-0 right-1/2">
 					<Alert color="info" className="mb-5 translate-x-1/2 ">
-						<span>
-							<span className="font-medium">Info alert!</span> Change a few things up
-							and try submitting again.
-						</span>
+						<span>Link has been copied to clipboard.</span>
 					</Alert>
 				</motion.div>
 				<NewEventModal show={modalShow} setShow={setModalShow} />
-
-				{/* <Button onClick={() => signOut()}>Sign Out</Button> */}
 			</div>
 		</RequireAuthLayout>
 	);
