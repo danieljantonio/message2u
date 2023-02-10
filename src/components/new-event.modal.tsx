@@ -12,7 +12,8 @@ type Props = {
 const NewEventModal: FC<Props> = ({ show, setShow }) => {
 	const {
 		register,
-		handleSubmit,
+		// handleSubmit,
+		getValues,
 		formState: { errors },
 	} = useForm<FormValues>();
 
@@ -22,8 +23,8 @@ const NewEventModal: FC<Props> = ({ show, setShow }) => {
 		},
 	});
 
-	const onSubmit = (values: FormValues) => {
-		createEvent.mutate(values);
+	const onSubmit = () => {
+		createEvent.mutate(getValues());
 	};
 
 	return (
@@ -31,7 +32,8 @@ const NewEventModal: FC<Props> = ({ show, setShow }) => {
 			<Modal.Header>Create New Event</Modal.Header>
 			<Modal.Body>
 				<div className="space-y-6">
-					<form id="create-event-form" onSubmit={void handleSubmit(onSubmit)}>
+					<form id="create-event-form">
+						{/* onSubmit={void handleSubmit(onSubmit)} */}
 						<div>
 							<div className="mb-2 block">
 								<Label htmlFor="event-name" value="Event Name" />
@@ -92,7 +94,7 @@ const NewEventModal: FC<Props> = ({ show, setShow }) => {
 				</div>
 			</Modal.Body>
 			<Modal.Footer>
-				<Button type="submit" form="create-event-form">
+				<Button form="create-event-form" onClick={() => onSubmit()}>
 					Create
 				</Button>
 				<Button color="gray" onClick={() => setShow(false)}>
