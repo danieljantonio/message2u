@@ -24,6 +24,9 @@ export const eventRouter = createTRPCRouter({
 		}),
 	getAll: protectedProcedure.query(async ({ ctx }) => {
 		const events = await ctx.prisma.event.findMany({
+			where: {
+				ownerId: ctx.session.user.id,
+			},
 			include: {
 				messages: true,
 			},
